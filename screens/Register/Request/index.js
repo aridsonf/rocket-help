@@ -5,8 +5,10 @@ import {
   VStack,
   Button,
   Input,
-  TextArea
+  TextArea,
+  ScrollView
 } from "native-base";
+import { Keyboard } from 'react-native';
 import Colors from "../../../theme/Colors";
 import { useTicketContext } from '../../../util/TicketContext';
 
@@ -26,6 +28,7 @@ const RequestRegister = ({ navigation }) => {
         setErrorDescriptionInput(false);
     };
     const handleRegister = () => {
+        Keyboard.dismiss();
         if (!patrimony) {
             setErrorPatrimonyInput(true);
         }
@@ -46,8 +49,9 @@ const RequestRegister = ({ navigation }) => {
     }
 
     return (
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View alignItems="center" bg={Colors.base.primaryShape}>
-            <Box safeArea w="90%" h="100%">
+            <Box safeArea w="90%" h="100%">    
                 <VStack h="100%">
                     <Box alignItems="center">
                         <Input 
@@ -103,6 +107,7 @@ const RequestRegister = ({ navigation }) => {
                 </VStack>
             </Box>
         </View>
+    </ScrollView>
     );
 };
 

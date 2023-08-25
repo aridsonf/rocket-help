@@ -10,8 +10,9 @@ import {
   Center, 
   Image,
   Icon,
-  ScrollView
+  ScrollView,
 } from "native-base";
+import { Keyboard } from 'react-native';
 import { Key, Envelope } from "phosphor-react-native";
 import Colors from "../../theme/Colors";
 
@@ -31,6 +32,7 @@ const LoginScreen = ({ navigation }) => {
   };
 
   const handleLogin = () => {
+    Keyboard.dismiss();
     if (!isEmailFilled) {
         setErrorEmailInput(true);
     }
@@ -43,7 +45,7 @@ const LoginScreen = ({ navigation }) => {
   }
 
   return (
-    <ScrollView bg={Colors.base.tertiaryShape}>
+    <ScrollView bg={Colors.base.tertiaryShape} contentContainerStyle={{ flexGrow: 1 }}>
         <View w="100%" alignItems="center" flex={1} pt="62px" px="3">
             <Box safeArea w="90%" maxW="400px">
                 <Center>
