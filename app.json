@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "rocket-help-app",
+    "name": "rocketHelp",
     "slug": "rocket-help-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/pre-render/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.anff.rockethelpapp"
     },
     "web": {
       "favicon": "./assets/pre-render/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "cc60d8fb-9ede-4180-8116-56876dfcfa50"
+      }
     }
   }
 }
