@@ -9,7 +9,8 @@ import {
   Button, 
   Center, 
   Image,
-  Icon
+  Icon,
+  ScrollView
 } from "native-base";
 import { Key, Envelope } from "phosphor-react-native";
 import Colors from "../../theme/Colors";
@@ -27,7 +28,7 @@ const LoginScreen = ({ navigation }) => {
   const handlePasswordChange = (value) => {
     setIsPasswordFilled(value.trim().length > 0);
     setErrorPasswordInput(false);
-};
+  };
 
   const handleLogin = () => {
     if (!isEmailFilled) {
@@ -37,12 +38,13 @@ const LoginScreen = ({ navigation }) => {
         setErrorPasswordInput(true);
     }
     if (isEmailFilled && isPasswordFilled) {
-        // navigation.navigate('Home')
+        navigation.navigate('Home')
     }
   }
 
   return (
-        <View w="100%" alignItems="center" flex={1} pt="62px" px="3" bg={Colors.base.tertiaryShape}>
+    <ScrollView bg={Colors.base.tertiaryShape}>
+        <View w="100%" alignItems="center" flex={1} pt="62px" px="3">
             <Box safeArea w="90%" maxW="400px">
                 <Center>
                     <Image source={require("../../assets/logo/vertical-orientation.png")} alt="Alternate Text" />
@@ -58,8 +60,9 @@ const LoginScreen = ({ navigation }) => {
                             borderColor={errorEmailInput && Colors.base.error}
                             bg={Colors.base.background}
                             color={isEmailFilled ? Colors.base.textBase : Colors.base.placeholder}
+                            fontSize="16px"
                             _focus={{
-                                borderColor: Colors.product.secondary1,
+                                borderColor: (errorEmailInput ? Colors.base.error : Colors.product.secondary1),
                                 borderWidth: 1,
                                 bg: Colors.base.background,
                                 color: Colors.base.textBase,
@@ -78,6 +81,7 @@ const LoginScreen = ({ navigation }) => {
                             borderColor={errorPasswordInput && Colors.base.error}
                             bg={Colors.base.background}
                             color={isPasswordFilled ? Colors.base.textBase : Colors.base.placeholder}
+                            fontSize="16px"
                             _focus={{
                                 borderColor: Colors.product.secondary1,
                                 borderWidth: 1,
@@ -86,7 +90,7 @@ const LoginScreen = ({ navigation }) => {
                                 _text: Colors.base.textBase
                             }}
                             InputLeftElement={<Icon as={<Envelope color={
-                                errorPasswordInput ? Colors.base.error : (isEmailFilled ? Colors.product.primary : Colors.base.placeholder)
+                                errorPasswordInput ? Colors.base.error : (isPasswordFilled ? Colors.product.primary : Colors.base.placeholder)
                             } />} size={5} ml="2" />} 
                             placeholder="Senha" type="password"
                             onChangeText={handlePasswordChange}
@@ -99,6 +103,9 @@ const LoginScreen = ({ navigation }) => {
                         _pressed={{
                             bg: Colors.product.secondary1,
                         }}
+                        _text={{
+                            fontWeight: "bold"
+                        }}
                         onPress={handleLogin}
                     >
                         Entrar
@@ -106,6 +113,7 @@ const LoginScreen = ({ navigation }) => {
                 </VStack>
             </Box>
         </View>
+    </ScrollView>
     );
 };
 
