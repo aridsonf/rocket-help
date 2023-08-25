@@ -18,7 +18,6 @@ const EmptyList = ({ text }) => {
                 color={Colors.base.placeholder}
             >{text}</Text>
         </Center>
-                        
     );
 };
 

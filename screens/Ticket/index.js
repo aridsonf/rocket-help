@@ -1,11 +1,8 @@
 import React, {useState} from "react";
 import { 
-  View,
   Box,
   VStack,
-  Button,
   TextArea,
-  Input,
   Text,
   HStack,
   Icon,
@@ -16,6 +13,8 @@ import Colors from "../../theme/Colors";
 import { Hourglass, CheckCircle, DesktopTower, ClipboardText } from "phosphor-react-native";
 import { useTicketContext } from '../../util/TicketContext';
 import CustomButton from "../../components/Button";
+import InformationCard from "../../components/InformationCard";
+import InputCard from "../../components/InputCard";
 
 const TicketScreen = ({ route, navigation }) => {
     const { tickets, giveSolution } = useTicketContext();
@@ -55,69 +54,33 @@ const TicketScreen = ({ route, navigation }) => {
             <Box w="90%" h="93.2%">
                 <ScrollView>
                     <VStack space={6} py="6">
-                        <Box alignItems="center" bg={Colors.base.primaryShape} p="2" pb="4" rounded="md">
-                            <HStack w="100%" alignItems="center" mt="4" ml="6">
-                                <Icon as={<DesktopTower color={Colors.support.primary} h="22px"/>}/>
-                                <Text ml="2" fontSize="16px" color={Colors.base.placeholder}>
-                                    EQUIPAMENTO
-                                </Text> 
-                            </HStack> 
-                            <HStack w="100%" alignItems="center" py="2" ml="6">
-                                <Text fontSize="16px" color={Colors.base.title}>
-                                    {ticket?.equipment}
-                                </Text> 
-                            </HStack> 
-                        </Box>
-                        <Box alignItems="center" bg={Colors.base.primaryShape} p="2" pb="4" rounded="md">
-                            <HStack w="100%" alignItems="center" mt="4" ml="6">
-                                <Icon as={<ClipboardText color={Colors.support.primary} h="22px"/>}/>
-                                <Text ml="2" fontSize="16px" color={Colors.base.placeholder}>
-                                    DESCRIÇÃO DO PROBLEMA
-                                </Text> 
-                            </HStack> 
-                            <VStack w="100%" justifyContent="center" py="2" ml="6" borderBottomColor={Colors.base.placeholder} borderBottomRadius={1}>
-                                <Text mr="6" fontSize="16px" color={Colors.base.title}>
-                                    {ticket?.problem}
-                                </Text> 
-                                <Divider alignSelf="center" w="93%" mr="6" thickness={2} my={4} bg={Colors.base.secondaryShape}/>
-                                <Text mr="6" fontSize="14px" color={Colors.base.placeholder}>
-                                    Registrado em 20/11/2022 às 14:30
-                                </Text> 
-                            </VStack> 
-                        </Box>
-                        <Box alignItems="center" bg={Colors.base.primaryShape} p="2" rounded="md">
-                            <HStack w="100%" alignItems="center" mt="4" ml="6">
-                                <Icon as={<CheckCircle color={Colors.support.primary} h="22px"/>}/>
-                                <Text ml="2" fontSize="16px" color={Colors.base.placeholder}>
-                                    SOLUÇÃO
-                                </Text> 
-                            </HStack> 
-                            {( ticket?.status === "ONGOING" ?
-                                <TextArea 
-                                    h="263px" mt="2"
-                                    placeholder="Descrição do problema" 
-                                    borderWidth={errorSolutionInput ? 1 : 0}
-                                    borderColor={errorSolutionInput && Colors.base.error}
-                                    color={solution ? Colors.base.textBase : Colors.base.placeholder}
-                                    fontSize="16px"
-                                    _focus={{
-                                        borderWidth: 0,
-                                        bg: Colors.base.primaryShape,
-                                    }}
-                                    onChangeText={handleSolutionChange}
-                                    onFocus={() => {setErrorSolutionInput(false)}}
-                                /> : 
-                                <VStack w="100%" justifyContent="center" py="2" ml="6" borderBottomColor={Colors.base.placeholder} borderBottomRadius={1}>
-                                    <Text mr="6" fontSize="16px" color={Colors.base.title}>
-                                        {ticket?.solution}
-                                    </Text> 
-                                    <Divider alignSelf="center" w="93%" mr="6" thickness={2} my={4} bg={Colors.base.secondaryShape}/>
-                                    <Text mr="6" fontSize="14px" color={Colors.base.placeholder}>
-                                        Registrado em 20/11/2022 às 14:30
-                                    </Text> 
-                                </VStack> 
-                            )}
-                        </Box>
+                        <InformationCard 
+                            title="EQUIPAMENTO"
+                            text={ticket?.equipment}
+                            icon={<Icon as={<DesktopTower color={Colors.support.primary} h="22px"/>}/>}
+                        />
+                        <InformationCard 
+                            title="DESCRIÇÃO DO PROBLEMA"
+                            text={ticket?.problem}
+                            obs="Registrado em 20/11/2022 às 14:30"
+                            icon={<Icon as={<ClipboardText color={Colors.support.primary} h="22px"/>}/>}
+                        />
+                        {( ticket?.status === "ONGOING" 
+                        ? <InputCard 
+                            errorInput={errorSolutionInput}
+                            isFilled={solution}
+                            handleInputChange={handleSolutionChange}
+                            setErrorInput={setErrorSolutionInput}
+                            placeholder="Descrição da solução"
+                            title="SOLUÇÃO"
+                            icon={<Icon as={<CheckCircle color={Colors.support.primary} h="22px"/>}/>}
+                        />  
+                        : <InformationCard 
+                            title="SOLUÇÃO"
+                            text={ticket?.solution}
+                            obs="Registrado em 20/11/2022 às 14:30"
+                            icon={<Icon as={<CheckCircle color={Colors.support.primary} h="22px"/>}/>}
+                        />)}
                     </VStack>
                 </ScrollView>
                 {( ticket?.status === "ONGOING" ? 
