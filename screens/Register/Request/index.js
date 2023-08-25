@@ -11,6 +11,8 @@ import {
 import { Keyboard } from 'react-native';
 import Colors from "../../../theme/Colors";
 import { useTicketContext } from '../../../util/TicketContext';
+import CustomInput from "../../../components/Input";
+import CustomButton from "../../../components/Button";
 
 const RequestRegister = ({ navigation }) => {
     const { tickets, updateTicket } = useTicketContext();
@@ -54,55 +56,30 @@ const RequestRegister = ({ navigation }) => {
             <Box safeArea w="90%" h="100%">    
                 <VStack h="100%">
                     <Box alignItems="center">
-                        <Input 
-                            borderWidth={errorPatrimonyInput ? 1 : 0}
-                            borderColor={errorPatrimonyInput && Colors.base.error}
-                            bg={Colors.base.background}
-                            color={patrimony ? Colors.base.textBase : Colors.base.placeholder}
-                            fontSize="16px"
-                            _focus={{
-                                borderColor: Colors.product.secondary1,
-                                borderWidth: 1,
-                                bg: Colors.base.background,
-                                color: Colors.base.textBase,
-                            }}
+                        <CustomInput
+                            errorInput={errorPatrimonyInput}
+                            isFilled={patrimony}
+                            handleInputChange={handlePatrimonyChange}
+                            setErrorInput={setErrorPatrimonyInput}
                             placeholder="Número de Patrimônio"
-                            onChangeText={handlePatrimonyChange}
-                            onFocus={() => {setErrorPatrimonyInput(false)}}
-                        /> 
-                        <TextArea 
+                            type="text"
+                        />
+                        <CustomInput
                             h="83%" mt="3" 
-                            placeholder="Descrição do problema" 
-                            borderWidth={errorDescriptionInput ? 1 : 0}
-                            borderColor={errorDescriptionInput && Colors.base.error}
-                            bg={Colors.base.background}
-                            color={description ? Colors.base.textBase : Colors.base.placeholder}
-                            fontSize="16px"
-                            _focus={{
-                                borderColor: Colors.product.secondary1,
-                                borderWidth: 1,
-                                bg: Colors.base.background,
-                                color: Colors.base.textBase,
-                            }}
-                            onChangeText={handleDescriptionChange}
-                            onFocus={() => {setErrorDescriptionInput(false)}}
+                            errorInput={errorDescriptionInput}
+                            isFilled={description}
+                            handleInputChange={handleDescriptionChange}
+                            setErrorInput={setErrorDescriptionInput}
+                            placeholder="Descrição do problema"
+                            type="textArea"
                         />
                     </Box>
                     <Box flexGrow={1} justifyContent="flex-end">
-                        <Button 
-                            alignSelf="end"
-                            my="2" p="16px" w="100%" 
-                            bg={Colors.product.primary} 
-                            _pressed={{
-                                bg: Colors.product.secondary1,
-                            }}
-                            _text={{
-                                fontWeight: "bold"
-                            }}
+                        <CustomButton 
                             onPress={handleRegister}
-                        >
-                            Cadastrar
-                        </Button>
+                            alignSelf="end" w="100%" 
+                            text="Cadastrar"
+                        />
                     </Box>
                 </VStack>
             </Box>

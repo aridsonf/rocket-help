@@ -15,6 +15,7 @@ import {
 import Colors from "../../theme/Colors";
 import { Hourglass, CheckCircle, DesktopTower, ClipboardText } from "phosphor-react-native";
 import { useTicketContext } from '../../util/TicketContext';
+import CustomButton from "../../components/Button";
 
 const TicketScreen = ({ route, navigation }) => {
     const { tickets, giveSolution } = useTicketContext();
@@ -121,19 +122,11 @@ const TicketScreen = ({ route, navigation }) => {
                 </ScrollView>
                 {( ticket?.status === "ONGOING" ? 
                     <Box alignSelf="end">
-                        <Button 
-                            my="2" p="16px" w="100%" 
-                            bg={Colors.product.primary} 
-                            _pressed={{
-                                bg: Colors.product.secondary1,
-                            }}
-                            _text={{
-                                fontWeight: "bold"
-                            }}
+                        <CustomButton 
                             onPress={handleRegister}
-                        >
-                            Finalizar
-                        </Button>
+                            w="100%" 
+                            text="Finalizar"
+                        />
                     </Box> : <Box></Box>
                 )}
             </Box>

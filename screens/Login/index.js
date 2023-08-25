@@ -15,6 +15,8 @@ import {
 import { Keyboard } from 'react-native';
 import { Key, Envelope } from "phosphor-react-native";
 import Colors from "../../theme/Colors";
+import CustomInput from "../../components/Input";
+import CustomButton from "../../components/Button";
 
 const LoginScreen = ({ navigation }) => {
   const [isEmailFilled, setIsEmailFilled] = useState(false);
@@ -57,61 +59,35 @@ const LoginScreen = ({ navigation }) => {
 
                 <VStack space={3} mt="5">
                     <FormControl>
-                        <Input 
-                            borderWidth={errorEmailInput ? 1 : 0}
-                            borderColor={errorEmailInput && Colors.base.error}
-                            bg={Colors.base.background}
-                            color={isEmailFilled ? Colors.base.textBase : Colors.base.placeholder}
-                            fontSize="16px"
-                            _focus={{
-                                borderColor: (errorEmailInput ? Colors.base.error : Colors.product.secondary1),
-                                borderWidth: 1,
-                                bg: Colors.base.background,
-                                color: Colors.base.textBase,
-                            }}
-                            InputLeftElement={<Icon as={<Key color={
-                                errorEmailInput ? Colors.base.error : (isEmailFilled ? Colors.product.primary : Colors.base.placeholder)
-                            } />} size={5} ml="2" />} 
+                        <CustomInput
+                            errorInput={errorEmailInput}
+                            isFilled={isEmailFilled}
+                            handleInputChange={handleEmailChange}
+                            setErrorInput={setErrorEmailInput}
                             placeholder="E-mail"
-                            onChangeText={handleEmailChange}
-                            onFocus={() => {setErrorEmailInput(false)}}
+                            type="text"
+                            leftIcon={<Icon as={<Key color={
+                                errorEmailInput ? Colors.base.error : (isEmailFilled ? Colors.product.primary : Colors.base.placeholder)
+                            } />}size={5} ml="2" />}
                         />
                     </FormControl>
                     <FormControl>
-                        <Input 
-                            borderWidth={errorPasswordInput ? 1 : 0}
-                            borderColor={errorPasswordInput && Colors.base.error}
-                            bg={Colors.base.background}
-                            color={isPasswordFilled ? Colors.base.textBase : Colors.base.placeholder}
-                            fontSize="16px"
-                            _focus={{
-                                borderColor: Colors.product.secondary1,
-                                borderWidth: 1,
-                                bg: Colors.base.background,
-                                color: Colors.base.textBase,
-                                _text: Colors.base.textBase
-                            }}
-                            InputLeftElement={<Icon as={<Envelope color={
+                        <CustomInput
+                            errorInput={errorPasswordInput}
+                            isFilled={isPasswordFilled}
+                            handleInputChange={handlePasswordChange}
+                            setErrorInput={setErrorPasswordInput}
+                            placeholder="Senha"
+                            type="password"
+                            leftIcon={<Icon as={<Envelope color={
                                 errorPasswordInput ? Colors.base.error : (isPasswordFilled ? Colors.product.primary : Colors.base.placeholder)
-                            } />} size={5} ml="2" />} 
-                            placeholder="Senha" type="password"
-                            onChangeText={handlePasswordChange}
-                            onFocus={() => {setErrorPasswordInput(false)}}
+                            } />} size={5} ml="2" />}
                         />
                     </FormControl>
-                    <Button 
-                        mt="2" p="16px" 
-                        bg={Colors.product.primary} 
-                        _pressed={{
-                            bg: Colors.product.secondary1,
-                        }}
-                        _text={{
-                            fontWeight: "bold"
-                        }}
+                    <CustomButton 
                         onPress={handleLogin}
-                    >
-                        Entrar
-                    </Button>
+                        text="Entrar"
+                    />
                 </VStack>
             </Box>
         </View>
