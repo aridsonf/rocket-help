@@ -1,5 +1,10 @@
 import React from "react";
-import { Box, HStack, VStack, Divider, Text, TextArea } from 'native-base';
+import { 
+    Box, 
+    HStack,
+    Text, 
+    TextArea 
+} from 'native-base';
 import Colors from "../../theme/Colors";
 
 const InputCard = ({ 

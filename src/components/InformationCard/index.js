@@ -1,5 +1,11 @@
 import React from "react";
-import { Box, HStack, VStack, Divider, Text } from 'native-base';
+import { 
+    Box, 
+    HStack,
+    VStack, 
+    Divider, 
+    Text 
+} from 'native-base';
 import Colors from "../../theme/Colors";
 
 const InformationCard = ({ 

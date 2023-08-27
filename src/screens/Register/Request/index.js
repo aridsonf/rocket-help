@@ -3,16 +3,15 @@ import {
   View,
   Box,
   VStack,
-  Button,
-  Input,
-  TextArea,
-  ScrollView
+  ScrollView,
+  StatusBar
 } from "native-base";
 import { Keyboard } from 'react-native';
-import Colors from "../../../theme/Colors";
 import { useTicketContext } from '../../../util/TicketContext';
+import { displayNotification } from '../../../util/NotificationUtils'; 
 import CustomInput from "../../../components/Input";
 import CustomButton from "../../../components/Button";
+import Colors from "../../../theme/Colors";
 
 const RequestRegister = ({ navigation }) => {
     const { tickets, updateTicket } = useTicketContext();
@@ -46,14 +45,19 @@ const RequestRegister = ({ navigation }) => {
                 status: "ONGOING"
             };
             updateTicket(newTicket)
+            displayNotification(
+                "Ticket Criado!",
+                "Um novo ticket foi registrado em nosso sistema."
+            )
             navigation.navigate('Home')
         }
     }
 
     return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <StatusBar backgroundColor={Colors.base.primaryShape}/>
         <View alignItems="center" bg={Colors.base.primaryShape}>
-            <Box safeArea w="90%" h="100%">    
+            <Box w="90%" h="100%" pt="4">    
                 <VStack h="100%">
                     <Box alignItems="center">
                         <CustomInput

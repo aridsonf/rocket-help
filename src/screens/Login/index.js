@@ -4,19 +4,19 @@ import {
   Box, 
   Heading, 
   VStack, 
-  FormControl, 
-  Input,
-  Button, 
+  FormControl,
   Center, 
   Image,
   Icon,
   ScrollView,
+  StatusBar
 } from "native-base";
 import { Keyboard } from 'react-native';
 import { Key, Envelope } from "phosphor-react-native";
-import Colors from "../../theme/Colors";
+import { displayNotification } from '../../util/NotificationUtils'; 
 import CustomInput from "../../components/Input";
 import CustomButton from "../../components/Button";
+import Colors from "../../theme/Colors";
 
 const LoginScreen = ({ navigation }) => {
   const [isEmailFilled, setIsEmailFilled] = useState(false);
@@ -43,11 +43,16 @@ const LoginScreen = ({ navigation }) => {
     }
     if (isEmailFilled && isPasswordFilled) {
         navigation.navigate('Home')
+        displayNotification(
+          "Bem-vindo ao nosso aplicativo!",
+          "Você fez login com sucesso."
+        )
     }
   }
 
   return (
     <ScrollView bg={Colors.base.tertiaryShape} contentContainerStyle={{ flexGrow: 1 }}>
+        <StatusBar backgroundColor={Colors.base.tertiaryShape}/>
         <View w="100%" alignItems="center" flex={1} pt="62px" px="3">
             <Box safeArea w="90%" maxW="400px">
                 <Center>

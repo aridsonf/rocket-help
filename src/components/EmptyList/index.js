@@ -4,8 +4,8 @@ import {
   Icon,
   Center
 } from "native-base";
-import Colors from "../../theme/Colors";
 import { ChatTeardropText } from "phosphor-react-native";
+import Colors from "../../theme/Colors";
 
 const EmptyList = ({ text }) => {
     return (

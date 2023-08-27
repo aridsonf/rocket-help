@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { 
   View,
   Box,
@@ -6,20 +6,15 @@ import {
   VStack,
   Heading,
   Text,
-  Button,
-  Pressable,
-  Icon,
-  Center,
-  Stack,
-  ScrollView,
-  FlatList
+  FlatList,
+  StatusBar
 } from "native-base";
-import Colors from "../../theme/Colors";
 import { useTicketContext } from '../../util/TicketContext';
 import TicketCard from "../../components/TicketCard";
 import SelectButton from "../../components/SelectButton";
 import CustomButton from "../../components/Button";
 import EmptyList from "../../components/EmptyList";
+import Colors from "../../theme/Colors";
 
 const HomeScreen = ({ navigation }) => {
     const [selected, setSelected] = React.useState(0);
@@ -30,7 +25,8 @@ const HomeScreen = ({ navigation }) => {
 
     return (
         <View alignItems="center" bg={Colors.base.background}>
-            <Box safeArea w="90%" h="100%">
+            <StatusBar backgroundColor={Colors.base.primaryShape}/>
+            <Box w="90%" h="100%" pt="6">
                 <VStack h="100%">
                     <Box>
                         <HStack justifyContent="space-between" alignItems="center">

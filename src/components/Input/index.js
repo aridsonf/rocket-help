@@ -1,5 +1,8 @@
 import React from 'react';
-import { Input, TextArea } from 'native-base';
+import { 
+  Input, 
+  TextArea 
+} from 'native-base';
 import Colors from "../../theme/Colors";
 
 const CustomInput = ({

@@ -2,19 +2,19 @@ import React, {useState} from "react";
 import { 
   Box,
   VStack,
-  TextArea,
   Text,
   HStack,
   Icon,
-  Divider,
-  ScrollView
+  ScrollView,
+  StatusBar
 } from "native-base";
-import Colors from "../../theme/Colors";
 import { Hourglass, CheckCircle, DesktopTower, ClipboardText } from "phosphor-react-native";
 import { useTicketContext } from '../../util/TicketContext';
+import { displayNotification } from '../../util/NotificationUtils'; 
 import CustomButton from "../../components/Button";
 import InformationCard from "../../components/InformationCard";
 import InputCard from "../../components/InputCard";
+import Colors from "../../theme/Colors";
 
 const TicketScreen = ({ route, navigation }) => {
     const { tickets, giveSolution } = useTicketContext();
@@ -30,6 +30,10 @@ const TicketScreen = ({ route, navigation }) => {
         if (!solution) {
             setErrorSolutionInput(true);
         } else {
+            displayNotification(
+                "Ticket Concluído!",
+                "Seu ticket foi concluído com sucesso."
+            )
             giveSolution(ticket.id, solution)
             navigation.navigate('Home')
         }
@@ -37,6 +41,7 @@ const TicketScreen = ({ route, navigation }) => {
 
     return (
         <Box alignItems="center" bg={Colors.base.background}>
+            <StatusBar backgroundColor={Colors.base.primaryShape}/>
             {( ticket?.status === "ONGOING" ?
                 <HStack w="100%" bg={Colors.base.secondaryShape} py="16px" px="12px"  alignItems="center" justifyContent="center" mt="-1">
                     <Icon as={<Hourglass color={Colors.support.secondary} h="22px"/>}/>
