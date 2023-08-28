@@ -4,7 +4,7 @@
     "slug": "rocket-help-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/pre-render/Icon.png",
+    "icon": "./src/assets/logo/logo-playstore.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./src/assets/pre-render/splash.png",
@@ -19,7 +19,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/pre-render/adaptive-icon.png",
+        "foregroundImage": "./src/assets/logo/logo-playstore.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.anff.rockethelpapp"
