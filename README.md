@@ -70,7 +70,7 @@ Run following command to start mobile app:
 
 ```bash
 # Run the app (Android)
-$ react-native run-android
+$ yarn run android
 ```
 
 <p align="center">Developed by Aridson Filho</p>
