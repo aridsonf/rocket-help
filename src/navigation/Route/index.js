@@ -1,21 +1,19 @@
-import React from "react";
-import { 
-  Pressable, 
-  Icon,
-  Image
-} from "native-base";
-import { SignOut, CaretLeft } from "phosphor-react-native";
+import React from 'react';
+import { Image } from 'native-base';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { displayNotification } from '../../util/NotificationUtils'; 
-import LoginScreen from "../../screens/Login";
-import HomeScreen from "../../screens/Home";
-import TicketScreen from "../../screens/Ticket";
-import RequestRegisterScreen from "../../screens/Register/Request";
-import Colors from "../../theme/Colors";
+import { 
+  getHomeScreenOptions, 
+  getRequestRegisterScreenOptions, 
+  getTicketScreenOptions 
+} from './NavigationOptions'; 
+import LoginScreen from '../../screens/Login';
+import HomeScreen from '../../screens/Home';
+import TicketScreen from '../../screens/Ticket';
+import RequestRegisterScreen from '../../screens/Register/Request';
 
 const Stack = createNativeStackNavigator();
 
-function LogoTitle() {
+export function LogoTitle() {
   return (
     <Image 
       source={require('../../assets/logo/horizontal-orientation.png')}
@@ -31,68 +29,18 @@ export function AppRoutes() {
       <Stack.Screen 
         name="Home" 
         component={HomeScreen}
-        options={({ navigation }) => ({ 
-            headerTitle: (props) => <LogoTitle {...props} />,
-            headerStyle: {
-              backgroundColor: Colors.base.primaryShape,
-            },
-            headerTintColor: Colors.base.primaryShape,
-            headerRight: () => (
-              <Pressable onPress={() => {
-                displayNotification(
-                  "Até logo!",
-                  "Você fez logout com sucesso."
-                )
-                navigation.navigate('Login')
-              }} >
-                <Icon mr="2" as={<SignOut color={Colors.base.placeholder}/>}/>
-              </Pressable>
-            ),
-            headerBackVisible: false,
-        })}
+        options={({ navigation }) => getHomeScreenOptions(navigation)} 
       />
       <Stack.Screen 
         name="RequestRegister" 
         component={RequestRegisterScreen}
-        options={({ navigation }) => ({ 
-            headerTitle: "Solicitação",
-            headerTitleAlign: "center",
-            headerTitleStyle: {
-              color: Colors.base.title,
-              fontWeight: "bold"
-            },
-            headerStyle: {
-              backgroundColor: Colors.base.primaryShape,
-            },
-            headerTintColor: Colors.base.primaryShape,
-            headerLeft: () => (
-              <Pressable onPress={() => navigation.goBack()} >
-                <Icon mr="2" as={<CaretLeft color={Colors.base.placeholder}/>}/>
-              </Pressable>
-            ),
-        })}
+        options={({ navigation }) => getRequestRegisterScreenOptions(navigation)} 
       />
       <Stack.Screen 
         name="Ticket" 
         component={TicketScreen}
         initialParams={{ ticket: null }}
-        options={({ navigation }) => ({ 
-            headerTitle: "Solicitação",
-            headerTitleAlign: "center",
-            headerTitleStyle: {
-              color: Colors.base.title,
-              fontWeight: "bold"
-            },
-            headerStyle: {
-              backgroundColor: Colors.base.primaryShape,
-            },
-            headerTintColor: Colors.base.primaryShape,
-            headerLeft: () => (
-              <Pressable onPress={() => navigation.goBack()} >
-                <Icon mr="2" as={<CaretLeft color={Colors.base.placeholder}/>}/>
-              </Pressable>
-            ),
-          })}
+        options={({ navigation }) => getTicketScreenOptions(navigation)}
       />
     </Stack.Navigator>
   );
