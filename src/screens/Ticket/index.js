@@ -15,6 +15,7 @@ import CustomButton from "../../components/Button";
 import InformationCard from "../../components/InformationCard";
 import InputCard from "../../components/InputCard";
 import Colors from "../../theme/Colors";
+import styles from "./styles";
 
 const TicketScreen = ({ route, navigation }) => {
     const { tickets, giveSolution } = useTicketContext();
@@ -40,35 +41,35 @@ const TicketScreen = ({ route, navigation }) => {
     }
 
     return (
-        <Box alignItems="center" bg={Colors.base.background}>
+        <Box {...styles.mainBox}>
             <StatusBar backgroundColor={Colors.base.primaryShape}/>
             {( ticket?.status === "ONGOING" ?
-                <HStack w="100%" bg={Colors.base.secondaryShape} py="16px" px="12px"  alignItems="center" justifyContent="center" mt="-1">
+                <HStack {...styles.hStackStatus}>
                     <Icon as={<Hourglass color={Colors.support.secondary} h="22px"/>}/>
-                    <Text ml="2" fontSize="16px" color={Colors.support.secondary}>
-                    EM ANDAMENTO
+                    <Text {...styles.textOngoing}>
+                        EM ANDAMENTO
                     </Text> 
                 </HStack> : 
-                <HStack w="100%" bg={Colors.base.secondaryShape} py="16px" px="12px"  alignItems="center" justifyContent="center" mt="-1">
+                <HStack {...styles.hStackStatus}>
                     <Icon as={<CheckCircle color={Colors.product.secondary2} h="22px"/>}/>
-                    <Text ml="2" fontSize="16px" color={Colors.product.secondary2}>
-                    FINALIZADO
+                    <Text {...styles.textFinished}>
+                        FINALIZADO
                     </Text> 
                 </HStack> 
             )}
-            <Box w="90%" h="93.2%">
+            <Box {...styles.scrollBox}>
                 <ScrollView>
-                    <VStack space={6} py="6">
+                    <VStack {...styles.scrollVStack}>
                         <InformationCard 
                             title="EQUIPAMENTO"
                             text={ticket?.equipment}
-                            icon={<Icon as={<DesktopTower color={Colors.support.primary} h="22px"/>}/>}
+                            icon={<Icon as={<DesktopTower {...styles.cardIcon} />}/>}
                         />
                         <InformationCard 
                             title="DESCRIÇÃO DO PROBLEMA"
                             text={ticket?.problem}
                             obs="Registrado em 20/11/2022 às 14:30"
-                            icon={<Icon as={<ClipboardText color={Colors.support.primary} h="22px"/>}/>}
+                            icon={<Icon as={<ClipboardText {...styles.cardIcon}/>}/>}
                         />
                         {( ticket?.status === "ONGOING" 
                         ? <InputCard 
@@ -78,21 +79,21 @@ const TicketScreen = ({ route, navigation }) => {
                             setErrorInput={setErrorSolutionInput}
                             placeholder="Descrição da solução"
                             title="SOLUÇÃO"
-                            icon={<Icon as={<CheckCircle color={Colors.support.primary} h="22px"/>}/>}
+                            icon={<Icon as={<CheckCircle {...styles.cardIcon}/>}/>}
                         />  
                         : <InformationCard 
                             title="SOLUÇÃO"
                             text={ticket?.solution}
                             obs="Registrado em 20/11/2022 às 14:30"
-                            icon={<Icon as={<CheckCircle color={Colors.support.primary} h="22px"/>}/>}
+                            icon={<Icon as={<CheckCircle {...styles.cardIcon}/>}/>}
                         />)}
                     </VStack>
                 </ScrollView>
                 {( ticket?.status === "ONGOING" ? 
-                    <Box alignSelf="end">
+                    <Box {...styles.boxEndButton}>
                         <CustomButton 
                             onPress={handleRegister}
-                            w="100%" 
+                            {...styles.endButton}   
                             text="Finalizar"
                         />
                     </Box> : <Box></Box>

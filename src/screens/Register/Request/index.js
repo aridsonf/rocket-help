@@ -12,6 +12,7 @@ import { displayNotification } from '../../../util/NotificationUtils';
 import CustomInput from "../../../components/Input";
 import CustomButton from "../../../components/Button";
 import Colors from "../../../theme/Colors";
+import styles from "./styles";
 
 const RequestRegister = ({ navigation }) => {
     const { tickets, updateTicket } = useTicketContext();
@@ -56,9 +57,9 @@ const RequestRegister = ({ navigation }) => {
     return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <StatusBar backgroundColor={Colors.base.primaryShape}/>
-        <View alignItems="center" bg={Colors.base.primaryShape}>
-            <Box w="90%" h="100%" pt="4">    
-                <VStack h="100%">
+        <View {...styles.view}>
+            <Box {...styles.box}>    
+                <VStack {...styles.vStack}>
                     <Box alignItems="center">
                         <CustomInput
                             errorInput={errorPatrimonyInput}
@@ -69,7 +70,7 @@ const RequestRegister = ({ navigation }) => {
                             type="text"
                         />
                         <CustomInput
-                            h="83%" mt="3" 
+                            {...styles.customInput}
                             errorInput={errorDescriptionInput}
                             isFilled={description}
                             handleInputChange={handleDescriptionChange}
@@ -78,10 +79,10 @@ const RequestRegister = ({ navigation }) => {
                             type="textArea"
                         />
                     </Box>
-                    <Box flexGrow={1} justifyContent="flex-end">
+                    <Box {...styles.boxSendButton}>
                         <CustomButton 
                             onPress={handleRegister}
-                            alignSelf="end" w="100%" 
+                            {...styles.endButton} 
                             text="Cadastrar"
                         />
                     </Box>

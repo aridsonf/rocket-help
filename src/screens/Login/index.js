@@ -17,6 +17,8 @@ import { displayNotification } from '../../util/NotificationUtils';
 import CustomInput from "../../components/Input";
 import CustomButton from "../../components/Button";
 import Colors from "../../theme/Colors";
+import styles from './styles';
+import { HeadingStyle } from './CustomStyle';
 
 const LoginScreen = ({ navigation }) => {
   const [isEmailFilled, setIsEmailFilled] = useState(false);
@@ -53,12 +55,12 @@ const LoginScreen = ({ navigation }) => {
   return (
     <ScrollView bg={Colors.base.tertiaryShape} contentContainerStyle={{ flexGrow: 1 }}>
         <StatusBar backgroundColor={Colors.base.tertiaryShape}/>
-        <View w="100%" alignItems="center" flex={1} pt="62px" px="3">
-            <Box safeArea w="90%" maxW="400px">
+        <View style={styles.container}>
+            <Box safeArea style={styles.box}>
                 <Center>
                     <Image source={require("../../assets/logo/vertical-orientation.png")} alt="Alternate Text" />
                 </Center>
-                <Heading mt="20" textAlign="center" color={Colors.base.title} fontWeight="medium" style="md" >
+                <Heading {...HeadingStyle}>
                     Acesse sua conta
                 </Heading>
 
@@ -73,7 +75,7 @@ const LoginScreen = ({ navigation }) => {
                             type="text"
                             leftIcon={<Icon as={<Key color={
                                 errorEmailInput ? Colors.base.error : (isEmailFilled ? Colors.product.primary : Colors.base.placeholder)
-                            } />}size={5} ml="2" />}
+                            } />} size={5} ml="2" />}
                         />
                     </FormControl>
                     <FormControl>

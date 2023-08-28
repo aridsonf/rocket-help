@@ -15,6 +15,7 @@ import SelectButton from "../../components/SelectButton";
 import CustomButton from "../../components/Button";
 import EmptyList from "../../components/EmptyList";
 import Colors from "../../theme/Colors";
+import styles from "./styles";
 
 const HomeScreen = ({ navigation }) => {
     const [selected, setSelected] = React.useState(0);
@@ -24,17 +25,19 @@ const HomeScreen = ({ navigation }) => {
     const finishedTickets = tickets.filter(item => item.status === 'FINISHED');
 
     return (
-        <View alignItems="center" bg={Colors.base.background}>
+        <View {...styles.view}>
             <StatusBar backgroundColor={Colors.base.primaryShape}/>
-            <Box w="90%" h="100%" pt="6">
+            <Box {...styles.box}>
                 <VStack h="100%">
                     <Box>
-                        <HStack justifyContent="space-between" alignItems="center">
+                        <HStack {...styles.hStackHeading}>
                             <Heading color={Colors.base.title}>Solicitações</Heading>
-                            <Text color={Colors.base.textBase} fontSize="md">{(selected === 0) ? ongoingTickets.length : finishedTickets.length}</Text>
+                            <Text {...styles.textHeading}>
+                                {(selected === 0) ? ongoingTickets.length : finishedTickets.length}
+                            </Text>
                         </HStack>
-                        <HStack mt={3} space={2} mr="2">
-                            <Box w="50%">
+                        <HStack {...styles.hStackButtons}>
+                            <Box {...styles.boxSelectButtons}>
                                 <SelectButton
                                     label="EM ANDAMENTO"
                                     isSelected={selected === 0}
@@ -42,7 +45,7 @@ const HomeScreen = ({ navigation }) => {
                                     color={Colors.support.secondary}
                                 />
                             </Box>
-                            <Box w="50%">
+                            <Box {...styles.boxSelectButtons}>
                                 <SelectButton
                                     label="FINALIZADOS"
                                     isSelected={selected === 1}
@@ -55,23 +58,23 @@ const HomeScreen = ({ navigation }) => {
                     
                     {selected === 0 ?
                         (ongoingTickets.length > 0 ?            
-                            <FlatList mt="5" w="100%" data={ongoingTickets} renderItem={({item}) => 
+                            <FlatList {...styles.flatList} data={ongoingTickets} renderItem={({item}) => 
                                 <TicketCard ticket={item} navigation={navigation} />
                             }/>
                         : <EmptyList text="Você ainda não tem chamados criados" />
                         )
                     :   (finishedTickets.length > 0 ?            
-                            <FlatList mt="5" w="100%" data={finishedTickets} renderItem={({item}) => 
+                            <FlatList {...styles.flatList} data={finishedTickets} renderItem={({item}) => 
                                 <TicketCard ticket={item} navigation={navigation} />
                             }/>
                         : <EmptyList text="Você ainda não tem chamados finalizados" />
                         )
                     }
 
-                    <Box flexGrow={1} justifyContent="flex-end">
+                    <Box {...styles.boxSendButton}>
                         <CustomButton 
                             onPress={() => {navigation.navigate('RequestRegister')}}
-                            alignSelf="end" w="100%" 
+                            {...styles.endButton} 
                             text="Nova solicitação"
                         />
                     </Box>
