@@ -13,6 +13,7 @@ import CustomInput from "../../../components/Input";
 import CustomButton from "../../../components/Button";
 import Colors from "../../../theme/Colors";
 import styles from "./styles";
+import moment from 'moment';
 
 const RequestRegister = ({ navigation }) => {
     const { tickets, updateTicket } = useTicketContext();
@@ -43,7 +44,9 @@ const RequestRegister = ({ navigation }) => {
                 equipment: patrimony,
                 problem: description,
                 solution: null,
-                status: "ONGOING"
+                status: "ONGOING",
+                created_at: moment().format(),
+                solved_at: null
             };
             updateTicket(newTicket)
             displayNotification(

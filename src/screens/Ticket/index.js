@@ -16,6 +16,7 @@ import InformationCard from "../../components/InformationCard";
 import InputCard from "../../components/InputCard";
 import Colors from "../../theme/Colors";
 import styles from "./styles";
+import moment from 'moment';
 
 const TicketScreen = ({ route, navigation }) => {
     const { tickets, giveSolution } = useTicketContext();
@@ -68,7 +69,7 @@ const TicketScreen = ({ route, navigation }) => {
                         <InformationCard 
                             title="DESCRIÇÃO DO PROBLEMA"
                             text={ticket?.problem}
-                            obs="Registrado em 20/11/2022 às 14:30"
+                            obs={"Registrado em " + moment(ticket.created_at).format("DD/MM/YYYY") + " às " + moment(ticket.created_at).format("HH") + "h"}
                             icon={<Icon as={<ClipboardText {...styles.cardIcon}/>}/>}
                         />
                         {( ticket?.status === "ONGOING" 
@@ -84,7 +85,7 @@ const TicketScreen = ({ route, navigation }) => {
                         : <InformationCard 
                             title="SOLUÇÃO"
                             text={ticket?.solution}
-                            obs="Registrado em 20/11/2022 às 14:30"
+                            obs={"Registrado em " + moment(ticket.solved_at).format("DD/MM/YYYY") + " às " + moment(ticket.solved_at).format("HH") + "h"}
                             icon={<Icon as={<CheckCircle {...styles.cardIcon}/>}/>}
                         />)}
                     </VStack>

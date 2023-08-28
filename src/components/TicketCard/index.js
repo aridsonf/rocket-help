@@ -10,6 +10,7 @@ import {
 } from "native-base";
 import Colors from "../../theme/Colors";
 import { ClockAfternoon, Hourglass, CheckCircle } from "phosphor-react-native";
+import moment from 'moment';
 
 const TicketCard = ({ navigation, ticket }) => {
     const status = ticket.status ?? 'ONGOING'
@@ -33,7 +34,7 @@ const TicketCard = ({ navigation, ticket }) => {
                         <HStack alignItems="center" mt="-1">
                             <Icon as={<ClockAfternoon color={Colors.base.placeholder}/>}/>
                             <Text ml="1" fontSize="sm" color={Colors.base.placeholder}>
-                                20/01/22 às 14h
+                                {moment(ticket.created_at).format("DD/MM/YYYY") + " às " + moment(ticket.created_at).format("HH") + "h"}
                             </Text>
                         </HStack>
                     </Stack>
