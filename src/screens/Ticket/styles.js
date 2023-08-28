@@ -23,7 +23,7 @@ export default {
     textFinished: {
         ml: "2",
         fontSize: Font.fontSize.md,
-        color: Colors.support.secondary2
+        color: Colors.product.secondary2
     },
     scrollBox: {
         w:"90%",

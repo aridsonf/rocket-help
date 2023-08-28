@@ -8,3 +8,8 @@ export const HeadingStyle = {
     fontWeight: "medium",
     style: Font.fontSize.md
 }
+
+export const ScrollViewStyle = {
+    bg: Colors.base.tertiaryShape,
+    contentContainerStyle: { flexGrow: 1 }
+}

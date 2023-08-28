@@ -18,7 +18,7 @@ import CustomInput from "../../components/Input";
 import CustomButton from "../../components/Button";
 import Colors from "../../theme/Colors";
 import styles from './styles';
-import { HeadingStyle } from './CustomStyle';
+import { HeadingStyle, ScrollViewStyle } from './CustomStyle';
 
 const LoginScreen = ({ navigation }) => {
   const [isEmailFilled, setIsEmailFilled] = useState(false);
@@ -53,7 +53,7 @@ const LoginScreen = ({ navigation }) => {
   }
 
   return (
-    <ScrollView bg={Colors.base.tertiaryShape} contentContainerStyle={{ flexGrow: 1 }}>
+    <ScrollView {...ScrollViewStyle}>
         <StatusBar backgroundColor={Colors.base.tertiaryShape}/>
         <View style={styles.container}>
             <Box safeArea style={styles.box}>
