@@ -73,4 +73,6 @@ Run following command to create the .apk to you install in your Android device:
 $ eas build -p android --profile preview2
 ```
 
+If you want you can use the .apk in the /apk folder in the root of the project.
+
 <p align="center">Developed by Aridson Filho</p>
