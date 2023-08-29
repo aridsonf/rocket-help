@@ -66,11 +66,11 @@ $ yarn install
 
 ## :arrow_forward: Running
 
-Run following command to start mobile app:
+Run following command to create the .apk to you install in your Android device:
 
 ```bash
-# Run the app (Android)
-$ yarn run android
+# Create the .apk (Android)
+$ eas build -p android --profile preview2
 ```
 
 <p align="center">Developed by Aridson Filho</p>
