@@ -1,11 +1,16 @@
 import React from "react";
 import { 
   NativeBaseProvider, 
-  extendTheme
+  extendTheme,
+  StatusBar
 } from "native-base";
 import { NavigationContainer } from '@react-navigation/native';
-import { TicketProvider } from './util/TicketContext';
-import { AppRoutes } from './navigation/Route';
+import { TicketProvider } from './src/util/TicketContext';
+import { AppRoutes } from './src/navigation/Route';
+import {
+  SafeAreaProvider
+} from 'react-native-safe-area-context';
+import Colors from "./src/theme/Colors";
 
 const config = {
   useSystemColorMode: false,
@@ -17,11 +22,13 @@ const customTheme = extendTheme({ config });
 export default function App() {
   return (
     <TicketProvider>
-      <NavigationContainer theme={customTheme}>
-        <NativeBaseProvider>
-          <AppRoutes />
-        </NativeBaseProvider>
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <NavigationContainer theme={customTheme}>
+          <NativeBaseProvider>
+            <AppRoutes />
+          </NativeBaseProvider>
+        </NavigationContainer>
+      </SafeAreaProvider>
     </TicketProvider>
   );
 }
